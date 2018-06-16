@@ -9,5 +9,6 @@ Before use you must:
  * rename vm.tf.example to your own vm.tfvars
  * init terraform by command "terraform init"
  * run terraform from current directory by command "terraform apply -var-file=../common/vsphere.tfvars -var-file=vm.tfvars -auto-approve"
+ * destroy VMs by command "terraform destroy -var-file=../common/vsphere.tfvars -var-file=vm.tfvars -force"
 
 Script created for test using on ansible.
