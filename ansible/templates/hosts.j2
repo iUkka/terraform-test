@@ -1,0 +1,9 @@
+[stage:vars]
+ansible_python_interpreter=/usr/bin/python3
+ansible_connection=ssh
+ansible_user=deploy
+
+[stage]
+{% for item in ansible_play_batch %}
+{{ item }} ansible_ssh_host={{ hostvars[item].ansible_ssh_host }} 
+{% endfor %}

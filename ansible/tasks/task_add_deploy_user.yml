@@ -1,0 +1,46 @@
+---
+  - name: Check for connections (up to 20 second)
+    wait_for_connection:
+      delay: 3
+      timeout: 20
+      sleep: 20
+
+  - name: Create new user {{ remote_user }}
+    user:
+      name: deploy
+      groups: # Empty by default, here we give it some groups
+      - sudo
+      state: present
+      shell: /bin/bash       # Defaults to /bin/bash
+      system: no             # Defaults to no
+      createhome: yes        # Defaults to yes
+      home: /home/deploy     # Defaults to /home/<username>
+
+  - name: Set authorized key took from file
+    authorized_key:
+      user: deploy
+      state: present
+      key: "{{ lookup('file', '/home/user/.ssh/id_rsa.pub') }}"
+
+  - name: Modify /etc/sudoers
+    lineinfile:
+      path: /etc/sudoers
+      state: present
+      regexp: '^%deploy\s'
+      line: '%deploy ALL=(ALL) NOPASSWD: ALL'
+
+  - name: Enforce ssh key logins (PermitRootLogin no)
+    action: lineinfile dest=/etc/ssh/sshd_config regexp="^PermitRootLogin" line="PermitRootLogin no" state=present
+
+  - name: Enforce ssh key logins (PasswordAuthentication no)
+    action: lineinfile dest=/etc/ssh/sshd_config regexp="^PasswordAuthentication" line="PasswordAuthentication no" state=present
+
+  - name: Restart server
+    shell: 'sleep 3 && shutdown -r now "Reboot triggered by Ansible" && sleep 2'
+    async: 1
+    poll: 0
+    become: true
+
+  - name: Wait for the reboot to complete.
+    pause:
+      seconds: 10

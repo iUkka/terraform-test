@@ -1,0 +1,9 @@
+# BEGIN ANSIBLE MANAGED BLOCK
+[stage:vars]
+ansible_python_interpreter=/usr/bin/python3
+ansible_connection=ssh
+ansible_user=deploy
+
+[stage]
+ubuntu2 ansible_ssh_host=192.168.100.125 
+# END ANSIBLE MANAGED BLOCK

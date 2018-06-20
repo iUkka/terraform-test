@@ -1,0 +1,11 @@
+[local]
+localhost ansible_connection=local
+
+[templates:vars]
+ansible_python_interpreter=/usr/bin/python3
+ansible_connection=ssh
+ansible_user=****
+ansible_sudo_pass=****
+ansible_password =****
+
+[templates]

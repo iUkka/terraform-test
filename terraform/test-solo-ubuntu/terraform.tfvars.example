@@ -1,0 +1,11 @@
+# VM specifications
+vsphere_vm_folder = "solo-test"
+vsphere_vm_name = "ubuntu"
+vsphere_vm_template = "templates/ubuntu-16.04-template"
+
+vsphere_vcpu_number = "1"
+
+vsphere_memory_size = "1024"
+
+vsphere_ipv4_address = ["192.168.100.126"]
+

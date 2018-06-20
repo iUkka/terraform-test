@@ -1,7 +1,0 @@
-# vCenter connection
-vsphere_vcenter        = "vcenter.local"
-vsphere_user           = "administrator@local"
-vsphere_password       = "password"
-# because i have self-signed certificates
-vsphere_unverified_ssl = "true"
-

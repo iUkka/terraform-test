@@ -1,0 +1,23 @@
+---
+# tasks/hosts_stage.yml
+
+  - name: add host to group 'stage'
+    add_host:
+      name: "{{ ansible_host  }}"
+      groups: stage
+#    vars:
+#      remote_user: deploy
+
+  - name: update "stage" hosts file
+    become: true
+    blockinfile:
+      dest: /opt/ansible/inventories/staging/hosts
+      content: "{{ lookup('template', '../templates/hosts.j2') }}"
+      state: present
+
+  - name: Remove group "stage" from "templates"
+    lineinfile:
+      dest: /opt/ansible/inventories/templates/hosts
+      regexp: '{{ ansible_ssh_host }}'
+      state: absent
+      

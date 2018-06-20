@@ -1,7 +1,7 @@
 # VM specifications
 vsphere_vm_folder = "multiple-test"
 vsphere_vm_name = "ubuntu"
-vsphere_vm_template = "Templates/ubuntu-16.04-template"
+vsphere_vm_template = "templates/ubuntu-16.04-template"
 
 vsphere_vcpu_number = "1"
 

@@ -21,12 +21,12 @@ variable "vsphere_unverified_ssl" {
 
 variable "vsphere_datacenter" {
   description = "In which datacenter the VM will be deployed"
-  default = "CIRONLINE"
+  default = "LOCAL"
 }
 
 variable "vsphere_datastore" {
   description = "What is the name of the VM datastore"
-  default     = "Raid5Lun"
+  default     = "LUN01"
 }
 
 variable "vsphere_vm_name" {
@@ -35,7 +35,7 @@ variable "vsphere_vm_name" {
 
 variable "vsphere_vm_template" {
   description = "Where is the VM template located"
-  default     = "Templates"
+  default     = "templates"
 }
 
 variable "vsphere_vm_folder" {
@@ -60,7 +60,7 @@ variable "vsphere_memory_size" {
 
 variable "vsphere_port_group" {
   description = "In which port group the VM NIC will be configured (default: VM Network)"
-  default     = "DPortGroup"
+  default     = "VM Network"
 }
 
 variable "vsphere_ipv4_address" {
@@ -74,18 +74,18 @@ variable "vsphere_ipv4_netmask" {
 }
 
 variable "vsphere_ipv4_gateway" {
-  description = "What is the IPv4 gateway of the VM"
+  description = "What is the IPv4 gateway of the VM (default: 192.168.100.254)"
   default = "192.168.100.254"
 }
 
 variable "vsphere_dns_servers" {
-  description = "What are the DNS servers of the VM (default: 192.168.100.7)"
-  default     = "192.168.100.7"
+  description = "What are the DNS servers of the VM (default: 192.168.100.1)"
+  default     = "192.168.100.1"
 }
 
 variable "vsphere_domain" {
   description = "What is the domain of the VM"
-  default = "cironline.ru"
+  default = "local"
 }
 
 variable "vsphere_time_zone" {

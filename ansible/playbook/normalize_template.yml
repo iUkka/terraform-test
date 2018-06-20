@@ -1,0 +1,32 @@
+---
+- name: Check host status
+  hosts: templates
+  become: true
+  become_method: sudo
+  gather_facts: False
+
+  tasks:
+    - name: Check "user" status
+      include: ../tasks/task_check_user.yml
+
+    - name: Deploy "deploy" user into system
+      include: ../tasks/task_add_deploy_user.yml
+      when: task_check_user.msg is not defined
+
+    - name: Check "deploy" status
+      include: ../tasks/task_check_user.yml
+      vars:
+        ansible_user: "deploy"
+
+    - name: Expire an existing user
+      user:
+        name: user
+        expires : 1486509032
+      vars:
+        ansible_user: "deploy"
+      when: task_check_user.msg is not defined
+
+    - name: Generate stage hosts file
+      include: ../tasks/hosts_stage.yml
+      delegate_to: localhost
+
