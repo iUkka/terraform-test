@@ -14,9 +14,43 @@ Temporally issues:
 ubuntu ansible_ssh_host=192.168.100.2 
 
 * 3) Because i have no DNS/DHCP server on test instance (hard way, i know) count of VMs based on number of ip in vmvars files. it was conceived before production use.
-
-
-
+```
+├── ansible 
+│   ├── inventories
+│   │   ├── staging
+│   │   │   ├── group_vars
+│   │   │   │   └── all
+│   │   │   ├── hosts
+│   │   │   └── host_vars
+│   │   └── templates
+│   │       ├── group_vars
+│   │       │   └── all
+│   │       ├── hosts
+│   │       └── host_vars
+│   ├── playbook
+│   │   ├── normalize_template.yml
+│   ├── tasks
+│   │   ├── hosts_stage.yml
+│   │   ├── task_add_deploy_user.yml
+│   │   ├── task_check_user.yml
+│   │   └── task_move_to_stage.yml
+│   └── templates
+│       └── hosts.j2
+└── terraform
+    ├── common
+    │   ├── variables.tf
+    │   └── vsphere.tfvars
+    ├── test-multiple-ubuntu
+    │   ├── multiple-ubuntu.tf
+    │   ├── README.md
+    │   ├── variables.tf -> ../common/variables.tf
+    │   └── vm.tfvars
+    └── test-solo-ubuntu
+        ├── README.md
+        ├── solo-ubuntu.tf
+        ├── variables.tf -> ../common/variables.tf
+        └── vm.tfvars
+```
 
  
  
