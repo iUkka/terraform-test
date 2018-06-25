@@ -11,13 +11,13 @@
   - name: update "stage" hosts file
     become: true
     blockinfile:
-      dest: /opt/ansible/inventories/staging/hosts
+      dest: ../inventories/staging/hosts
       content: "{{ lookup('template', '../templates/hosts.j2') }}"
       state: present
 
   - name: Remove group "stage" from "templates"
     lineinfile:
-      dest: /opt/ansible/inventories/templates/hosts
+      dest: ../inventories/templates/hosts
       regexp: '{{ ansible_ssh_host }}'
       state: absent
       
