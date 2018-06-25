@@ -9,7 +9,7 @@ How to use:
 
 
 Temporally issues:
-* 1) Right now is path-sensitive, must be in "/opt" directory. Some scripts works from any place, some won't
+* 1) ~~Right now is path-sensitive, must be in "/opt" directory. Some scripts works from any place, some won't~~
 * 2) Newly-created terraforms VMs must be added on .\ansible\inventories\templates\hosts manually:
 ubuntu ansible_ssh_host=192.168.100.2 
 
